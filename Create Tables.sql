@@ -1,9 +1,16 @@
+/*
+	Criando o banco de dados
+*/
 BEGIN TRANSACTION
 
 CREATE DATABASE DevariaCandies;
 
 --COMMIT
 --ROLLBACK
+
+/*
+	Criando a tabela de Clientes
+*/
 
 BEGIN TRANSACTION
 
@@ -22,6 +29,10 @@ CREATE TABLE Cliente
 	CONSTRAINT PK_CodigoCliente PRIMARY KEY (Codigo)
 )
 
+/*
+	Criando a tabela de Fidelidade
+*/
+
 CREATE TABLE Fidelidade
 (
 	Codigo_Cliente int,
@@ -31,6 +42,9 @@ CREATE TABLE Fidelidade
 	CONSTRAINT FK_CodigoCliente_Fidelidade FOREIGN KEY (Codigo_Cliente) REFERENCES Cliente(Codigo)
 )
 
+/*
+	Criando a tabela de Formas de Pagamentos
+*/
 
 CREATE TABLE Forma_Pagamento
 (
@@ -40,6 +54,9 @@ CREATE TABLE Forma_Pagamento
 	CONSTRAINT PK_CodigoPagamento PRIMARY KEY (Codigo)
 )
 
+/*
+	Criando a tabela de Marcas
+*/
 
 CREATE TABLE Marca
 (
@@ -49,6 +66,9 @@ CREATE TABLE Marca
 	CONSTRAINT PK_CodigoMarca PRIMARY KEY (Codigo)
 )
 
+/*
+	Criando a tabela de Produtos
+*/
 
 CREATE TABLE Produto
 (
@@ -60,6 +80,9 @@ CREATE TABLE Produto
 	CONSTRAINT FK_CodigoMarca FOREIGN KEY (Codigo_Marca) REFERENCES Marca(codigo)
 )
 
+/*
+	Criando a tabela de Pedidos de vendas
+*/
 
 CREATE TABLE Pedido_Venda
 (
@@ -73,6 +96,10 @@ CREATE TABLE Pedido_Venda
 	CONSTRAINT FK_CodigoFormaPagamento FOREIGN KEY (Codigo_Forma_Pagamento) REFERENCES Forma_Pagamento(Codigo),	
 	CONSTRAINT FK_CodigoCliente FOREIGN KEY (Codigo_Cliente) REFERENCES Cliente(Codigo)
 )
+
+/*
+	Criando a tabela de Itens Pedido Venda
+*/
 
 CREATE TABLE Item_Pedido_Venda
 (
@@ -88,6 +115,9 @@ CREATE TABLE Item_Pedido_Venda
 	CONSTRAINT FK_CodigoVenda FOREIGN KEY (Codigo_Pedido_Venda) REFERENCES Pedido_Venda(Codigo)
 )
 
+/*
+	Criando a tabela de Distribuidores
+*/
 
 CREATE TABLE Distribuidor 
 (
@@ -102,6 +132,9 @@ CREATE TABLE Distribuidor
 	CONSTRAINT PK_CodigoDistribuidor PRIMARY KEY (Codigo)
 )
 
+/*
+	Criando a tabela de Pedido compra
+*/
 
 CREATE TABLE Pedido_Compra
 (
@@ -113,6 +146,10 @@ CREATE TABLE Pedido_Compra
 	CONSTRAINT PK_CodigoPedido_Venda PRIMARY KEY (Codigo),
 	CONSTRAINT FK_CodigoDistribuidor FOREIGN KEY (Codigo_Distribuidor) REFERENCES Distribuidor(Codigo)
 )
+
+/*
+	Criando a tabela de Item Pedido Compra
+*/
 
 CREATE TABLE Item_Pedido_Compra
 (
